@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chat_activity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linearlayout"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/attachment"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/greenattach" />
+
+        <EditText
+            android:id="@+id/messageBox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="90"
+            android:background="@drawable/message_background"
+            android:hint="Type a message"
+            android:paddingLeft="10dp"
+            tools:ignore="TouchTargetSizeCheck" />
+        <ImageView
+            android:id="@+id/sendButton"
+            android:layout_width="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="10"
+            android:src="@drawable/greensend"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/textimage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/chatRecyclerView"
+        android:src="@drawable/camera" />
+
+
+
+
+</RelativeLayout>

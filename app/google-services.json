@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "665969408299",
+    "project_id": "chatapplication-2c2fa",
+    "storage_bucket": "chatapplication-2c2fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665969408299:android:8a060a766a93ff77dfed6e",
+        "android_client_info": {
+          "package_name": "com.example.mobichat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665969408299-u1lmibg5dmbdt4r00nfq3ca5r1h6qgol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByx3W0yY8EbkjuaQ0dpevsHE1m7TvycWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665969408299-u1lmibg5dmbdt4r00nfq3ca5r1h6qgol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

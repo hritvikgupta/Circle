@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/btn_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/circleLogo_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/edit_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/image_user_app_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/message_background.xml" value="0.2005" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.3009689872146498" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22693850752236197" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25797729492187504" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.3714574898785425" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2103759765625" />
+        <entry key="app/src/main/res/layout/attachments.xml" value="0.25272369384765625" />
+        <entry key="app/src/main/res/layout/bottomeditprofiledialog.xml" value="0.2303497314453125" />
+        <entry key="app/src/main/res/layout/image_receive.xml" value="0.24547101449275363" />
+        <entry key="app/src/main/res/layout/image_send.xml" value="0.24547101449275363" />
+        <entry key="app/src/main/res/layout/imagemessagelayout.xml" value="0.3009796142578125" />
+        <entry key="app/src/main/res/layout/received.xml" value="0.24547101449275363" />
+        <entry key="app/src/main/res/layout/send.xml" value="0.3851362366607225" />
+        <entry key="app/src/main/res/layout/user_layout.xml" value="0.49482574462890627" />
+        <entry key="app/src/main/res/menu/chat.xml" value="0.23894370750144675" />
+        <entry key="app/src/main/res/menu/logout_action_bar.xml" value="0.26373443603515623" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/croppedlogo.xml" value="0.125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/croppedlogo_round.xml" value="0.125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

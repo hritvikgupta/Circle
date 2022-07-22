@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/document"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:src="@drawable/document"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/documentsupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/document"
+        android:layout_marginLeft="40dp"
+        android:text="Documents"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/camera"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@+id/document"
+        android:clickable="true"
+        android:src="@drawable/camera"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/cameraiamge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/camera"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/documentsupload"
+        android:text="Click Image"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/gallery"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/camera"
+        android:clickable="true"
+        android:src="@drawable/gallery"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/galleryimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gallery"
+        android:layout_marginLeft="55dp"
+        android:layout_toRightOf="@id/cameraiamge"
+        android:text="Gallery"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/audio"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/documentsupload"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:src="@drawable/audio"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/audioupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/audio"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="20dp"
+        android:text="Audio"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/contact"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/cameraiamge"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/audio"
+        android:clickable="true"
+        android:src="@drawable/contacts"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/contactUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/audioupload"
+        android:text="Contacts"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+
+</RelativeLayout>
