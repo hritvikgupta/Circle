@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -35,9 +36,10 @@ class Setting : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
+        val toolbar = findViewById<View>(R.id.toolbarSettings) as Toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Settings"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
         name = findViewById<TextView>(R.id.profileSettingName)
         profilestat = findViewById<TextView>(R.id.ProfileSettingStatus)
         email = findViewById<TextView>(R.id.ProfileSettingEmail)

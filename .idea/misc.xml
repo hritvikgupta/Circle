@@ -9,9 +9,11 @@
         <entry key="app/src/main/res/drawable/edit_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/image_user_app_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/message_background.xml" value="0.2005" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.3009689872146498" />
+        <entry key="app/src/main/res/drawable/phone.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/video.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.20615384615384616" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22693850752236197" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25797729492187504" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16146545410156252" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.3714574898785425" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2103759765625" />
         <entry key="app/src/main/res/layout/attachments.xml" value="0.25272369384765625" />
@@ -21,6 +23,7 @@
         <entry key="app/src/main/res/layout/imagemessagelayout.xml" value="0.3009796142578125" />
         <entry key="app/src/main/res/layout/received.xml" value="0.24547101449275363" />
         <entry key="app/src/main/res/layout/send.xml" value="0.3851362366607225" />
+        <entry key="app/src/main/res/layout/story_item.xml" value="0.34617902230525355" />
         <entry key="app/src/main/res/layout/user_layout.xml" value="0.49482574462890627" />
         <entry key="app/src/main/res/menu/chat.xml" value="0.23894370750144675" />
         <entry key="app/src/main/res/menu/logout_action_bar.xml" value="0.26373443603515623" />

@@ -7,12 +7,24 @@
     tools:context=".chat_activity">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/linearlayout"
-        android:layout_alignParentTop="true" />
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="1dp" />
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -28,7 +40,8 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/greenattach" />
+            android:src="@drawable/greenattach"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/messageBox"
@@ -58,6 +71,14 @@
         android:layout_marginLeft="50dp"
         android:layout_below="@id/chatRecyclerView"
         android:src="@drawable/camera" />
+
+    <TextView
+        android:id="@+id/testtext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/chatRecyclerView"
+        android:layout_toRightOf="@id/textimage"/>
+
 
 
 

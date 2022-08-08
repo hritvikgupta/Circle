@@ -1,47 +1,38 @@
 package com.example.mobichat
 
-import android.app.Activity
+//import com.bumptech.glide.Glide
+import android.annotation.SuppressLint
 import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.ContactsContract
-import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.webkit.MimeTypeMap
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-//import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
-import com.google.firebase.storage.ktx.storage
-import com.squareup.picasso.Picasso
 import io.agora.rtc.RtcEngine
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.properties.Delegates
-import android.app.ProgressDialog as AndroidAppProgressDialog
+import androidx.appcompat.widget.Toolbar;
+
 
 private var mRtcEngine:RtcEngine?=null
 
@@ -49,6 +40,7 @@ class chat_activity : AppCompatActivity() {
 
     private lateinit var messageRecyclerView: RecyclerView
     private lateinit var messageBox : EditText
+    private lateinit var testext : TextView
     private lateinit var sendButton: ImageView
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
@@ -64,17 +56,22 @@ class chat_activity : AppCompatActivity() {
     private lateinit var senderUid : String
     private lateinit var contact: ImageView
 
+    @SuppressLint("Range", "UseSupportActionBar")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+
+        // using toolbar as ActionBar
+
+        // using toolbar as ActionBar
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val name = intent.getStringExtra("name")
         val receiverUid = intent.getStringExtra("uid")
         senderUid = FirebaseAuth.getInstance().currentUser!!.uid
-
         senderRoom = receiverUid +senderUid
         receiverRoom = senderUid + receiverUid
-
         supportActionBar?.title = name
 
         mDbRef = FirebaseDatabase.getInstance().getReference()
@@ -82,6 +79,8 @@ class chat_activity : AppCompatActivity() {
         messageBox = findViewById(R.id.messageBox)
         attachments = findViewById(R.id.attachment)
         sendButton = findViewById(R.id.sendButton)
+        testext = findViewById(R.id.testtext)
+        testext.visibility = View.INVISIBLE
         messageList = ArrayList()
         imageUri = findViewById(R.id.textimage)
         imageUri.visibility = View.INVISIBLE
@@ -144,14 +143,82 @@ class chat_activity : AppCompatActivity() {
 
         }
 
+        var num:String?=null
+        /*
         val getResult =
             registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult()) {
-                if(it.resultCode == Activity.RESULT_OK){
-                    val value = it.data
-                    Toast.makeText(this, value.toString(), Toast.LENGTH_SHORT).show()
-                }
+                ActivityResultContracts.GetContent()) {
+                    val contactUri =it
+                   // val projection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                val projection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                var cursor: Cursor? = contentResolver.query(
+                    contactUri, projection,
+                    null, null, null
+                )
+                val numberIndex =
+                    cursor!!.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                val number = cursor.getString(numberIndex)
+                num = number
             }
+
+
+         */
+
+        var ans:String?=null
+        val getPerson = registerForActivityResult(PickContact()) {
+            it?.also { contactUri ->
+                val projection = arrayOf(
+                    ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
+                    ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                    ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER,
+                    ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER,
+                    ContactsContract.CommonDataKinds.Phone._ID,
+                    ContactsContract.CommonDataKinds.Phone.NUMBER
+
+                )
+
+                val cursor: Cursor? = contentResolver?.query(contactUri, projection, null, null, null)?.apply {
+                    moveToFirst()
+                }
+                val id = cursor?.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
+                val n = cursor?.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+                val phoneIndex =
+                    cursor!!.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                val n2 =cursor.getString(phoneIndex)
+               // testext.text = n
+                val contactMessage = n+n2
+                val messageObject = Message(message = contactMessage, senderId = senderUid)
+                createMessage(messageObject)
+                cursor?.close()
+            }
+        }
+
+
+        /*
+       val openContacts = registerForActivityResult(ActivityResultContracts.PickContact()) {
+
+            val contactData: Uri = it
+            val phone: Cursor? = contentResolver.query(contactData!!, null, null, null, null)
+            if (phone!!.moveToFirst()) {
+                val contactName: String = phone.getString(phone.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+
+                // To get number - runtime permission is mandatory.
+                val id: String = phone.getString(phone.getColumnIndex(ContactsContract.Contacts._ID))
+                if (phone.getString(phone.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)).toInt() > 0) {
+                    val phones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id, null, null)
+                    while (phones!!.moveToNext()) {
+                        val phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+
+                    }
+                    phones!!.close()
+                }
+
+                testext.text =  contactName
+            }
+
+        }
+
+         */
         attachments.setOnClickListener {
             val dialog = BottomSheetDialog(this)
             val view: View = layoutInflater.inflate(R.layout.attachments,null)
@@ -163,9 +230,15 @@ class chat_activity : AppCompatActivity() {
             }
             contact= view.findViewById(R.id.contact)
             contact.setOnClickListener {
+                getPerson.launch(0)
+                /*
                 val intent = Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI)
-                getResult.launch(intent)
+                getResult.launch(ContactsContract.Contacts.CONTENT_URI.toString())
                 dialog.dismissWithAnimation
+                Toast.makeText(this, num, Toast.LENGTH_SHORT).show()
+
+                 */
+
 
             }
 
@@ -177,6 +250,8 @@ class chat_activity : AppCompatActivity() {
 
 
     }
+
+
     private fun getFileExtentsion(uri: Uri): String? {
         val contentResolver: ContentResolver = contentResolver
         val mime: MimeTypeMap = MimeTypeMap.getSingleton()
@@ -257,6 +332,26 @@ class chat_activity : AppCompatActivity() {
         //storageReference.getFile()
     }
 
+    @SuppressLint("Range")
+    private fun getPhoneNumber(contentResolver: ContentResolver, id: String?): String {
+        var phoneNumber = ""
+
+        val cursor = contentResolver.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            null,
+            ContactsContract.Contacts._ID + " = ?",
+            arrayOf(id),
+            null
+        ) ?: return phoneNumber
+
+        if (cursor.moveToFirst()) {
+            phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA))
+        }
+
+        cursor.close()
+        return phoneNumber
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.chat,menu)
         return super.onCreateOptionsMenu(menu)
@@ -288,9 +383,22 @@ class chat_activity : AppCompatActivity() {
         Toast.makeText(this,"Starting Phone Call", Toast.LENGTH_SHORT).show()
     }
 
+
+
     private fun sendImageUri(imageUri: Uri) :Unit{
         val timestamp:String = ""+System.currentTimeMillis()
         val filePathName:String = "ChatImages/Post$timestamp"
 
+    }
+
+    class PickContact : ActivityResultContract<Int, Uri?>() {
+        override fun createIntent(context: Context, input: Int?) =
+            Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI).also {
+                it.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+            }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+            return if (resultCode == RESULT_OK) intent?.data else null
+        }
     }
 }

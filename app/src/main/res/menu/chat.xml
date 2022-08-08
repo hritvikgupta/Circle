@@ -6,13 +6,16 @@
         android:title="Phone Call"
         android:id="@+id/PhoneCall"
         app:showAsAction="always"
-        android:icon="@drawable/phone"/>
+        android:iconTint="@color/black"
+        android:icon="@drawable/pblack"/>
 
     <item android:title="videoCall"
         android:id="@+id/videocall"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:icon="@drawable/video"/>
+        android:icon="@drawable/vblack"/>
+
+
 
 
 </menu>
